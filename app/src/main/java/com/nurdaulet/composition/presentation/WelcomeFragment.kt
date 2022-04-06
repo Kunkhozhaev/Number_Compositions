@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.nurdaulet.composition.R
 import com.nurdaulet.composition.databinding.FragmentWelcomeBinding
 
@@ -26,7 +27,7 @@ class WelcomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonUnderstand.setOnClickListener{
-            launchWelcomeFragment()
+            launchChooseLevelFragment()
         }
     }
 
@@ -35,10 +36,7 @@ class WelcomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun launchWelcomeFragment(){
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, ChooseLevelFragment.newInstance())
-            .addToBackStack(ChooseLevelFragment.NAME)
-            .commit()
+    private fun launchChooseLevelFragment(){
+        findNavController().navigate(R.id.action_welcomeFragment_to_chooseLevelFragment)
     }
 }
